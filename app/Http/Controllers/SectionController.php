@@ -16,7 +16,7 @@ class SectionController extends Controller
 
     public function index()
     {
-        $sections = $this->section->all();
+        $sections = $this->section->with('users')->get();
 
         return view('sections.index', compact('sections'));
     }

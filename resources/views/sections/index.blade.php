@@ -13,13 +13,22 @@
                         <table class="table">
                             <tbody>
                             @foreach($sections as $section)
+                                {{ debug($section) }}
                                 <tr>
                                     <td>{{ $section->name }}</td>
                                     <td>
                                         <b>{{ $section->name }}</b><br>
                                         {{ $section->description }}
                                     </td>
-                                    <td>{{ $section->created_at }}</td>
+                                    @if($section->users)
+                                        <td><b>{{ __('Users') }}</b><br>
+                                            <ol>
+                                                @foreach($section->users as $user)
+                                                    <li>{{ $user->name }}</li>
+                                                @endforeach
+                                            </ol>
+                                        </td>
+                                    @endif
                                     <td>
                                         <form method="post" action="{{ route('sections.destroy', $section->id) }}">
                                             @csrf

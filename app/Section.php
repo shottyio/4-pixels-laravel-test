@@ -10,7 +10,7 @@ class Section extends Model
         'name', 'description', 'logo'
     ];
 
-    protected $with = ['users'];
+//    protected $with = ['users'];
 
     public function users()
     {
