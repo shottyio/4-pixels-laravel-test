@@ -6,6 +6,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('users', 'UserController');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('users', 'UserController');
 
-Route::resource('sections', 'SectionController');
+    Route::resource('sections', 'SectionController');
+});
+

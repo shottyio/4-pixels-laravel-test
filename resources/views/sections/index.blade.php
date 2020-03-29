@@ -13,9 +13,10 @@
                         <table class="table">
                             <tbody>
                             @foreach($sections as $section)
-                                {{ debug($section) }}
                                 <tr>
-                                    <td>{{ $section->name }}</td>
+                                    <td>
+                                        <img src="{{ asset('storage/' . $section->logo) }}" width="70" height="70">
+                                    </td>
                                     <td>
                                         <b>{{ $section->name }}</b><br>
                                         {{ $section->description }}
@@ -33,7 +34,7 @@
                                         <form method="post" action="{{ route('sections.destroy', $section->id) }}">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{ route('sections.edit', $section->id) }}" type="button"
+                                            <a href="{{ route('sections.destroy', $section->id) }}" type="button"
                                                class="btn btn-secondary btn-sm">Edit</a>
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                         </form>
@@ -42,6 +43,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        {{ $sections->links() }}
                     </div>
                 </div>
             </div>
